@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
-	mariadbparser "github.com/bytebase/mariadb-parser"
+	mysqlparser "github.com/bytebase/mysql-parser"
 	"github.com/stretchr/testify/require"
 )
 
@@ -46,10 +46,10 @@ func TestMariaDBSQLParser(t *testing.T) {
 			input, err := antlr.NewFileStream(filePath)
 			require.NoError(t, err)
 
-			lexer := mariadbparser.NewMariaDBLexer(input)
+			lexer := mysqlparser.NewMySQLLexer(input)
 
 			stream := antlr.NewCommonTokenStream(lexer, 0)
-			p := mariadbparser.NewMariaDBParser(stream)
+			p := mysqlparser.NewMySQLParser(stream)
 
 			lexerErrors := &CustomErrorListener{}
 			lexer.RemoveErrorListeners()

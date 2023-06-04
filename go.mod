@@ -1,4 +1,4 @@
-module github.com/bytebase/mariadb-parser
+module github.com/bytebase/mysql-parser
 
 go 1.20
 
