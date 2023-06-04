@@ -35,7 +35,7 @@ func (l *CustomErrorListener) ReportContextSensitivity(recognizer antlr.Parser, 
 	antlr.ConsoleErrorListenerINSTANCE.ReportContextSensitivity(recognizer, dfa, startIndex, stopIndex, prediction, configs)
 }
 
-func TestMariaDBSQLParser(t *testing.T) {
+func TestMySQLDBSQLParser(t *testing.T) {
 	examples, err := os.ReadDir("examples")
 	require.NoError(t, err)
 
