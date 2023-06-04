@@ -45,7 +45,7 @@ parser grammar MySQLParser;
 // $antlr-format useTab off, allowShortRulesOnASingleLine off, allowShortBlocksOnASingleLine on, alignSemicolons ownLine
 
 options {
-    superClass = MySQLBaseRecognizer;
+    // superClass = MySQLBaseRecognizer;
     tokenVocab = MySQLLexer;
     exportMacro = PARSERS_PUBLIC_TYPE;
 }
@@ -3557,7 +3557,7 @@ createUserEntry: // create_user in sql_yacc.yy
                 AS_SYMBOL textStringHash
                 | BY_SYMBOL textString
             )?
-            | {serverVersion >= 80018}? (WITH_SYMBOL textOrIdentifier)? BY_SYMBOL RANDOM_SYMBOL PASSWORD_SYMBOL
+            | (WITH_SYMBOL textOrIdentifier)? BY_SYMBOL RANDOM_SYMBOL PASSWORD_SYMBOL
         )
     )?
 ;
