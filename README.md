@@ -1,4 +1,4 @@
-The plsql-parser is a parser for MySQL. It is based on the [ANTLR4](https://github.com/antlr/antlr4) and use the grammar from [antlr4-grammars-mysql](https://github.com/antlr/grammars-v4/tree/master/sql/mysql).
+The mysql-parser is a parser for MySQL. It is based on the [ANTLR4](https://github.com/antlr/antlr4) and use the grammar from [antlr4-grammars-mysql](https://github.com/antlr/grammars-v4/tree/master/sql/mysql).
 
 ## Build
 
@@ -18,10 +18,18 @@ requirements:
 
 1. run `./build.sh` to generate the parser code.
 
-### From antlr4-grammars-plsql
+### From antlr4-grammars-mysql
 
-1. Clone the `MySQLLexer.g4` and `MySQLParser.g4` grammar files from https://github.com/antlr/grammars-v4/tree/master/sql/mysql.
+1. Clone the `MySQLLexer.g4` and `MySQLParser.g4` grammar files from https://github.com/mysql/mysql-workbench/tree/8.0/library/parsers/grammars.
+1. Update the lexer and parser.
 1. run `./build.sh` to generate the parser code.
+
+
+### Updates from MySQL Workbench.
+
+1. Removed the version checks https://github.com/bytebase/mysql-parser/commit/addcea9f8779ffe95159e334d9dd1ea7f93ed32d.
+1. Used SQL Mode off by default, and removed set types https://github.com/bytebase/mysql-parser/commit/878f24d9fd313f60b3a10f977c489c0599ae2d49, https://github.com/bytebase/mysql-parser/commit/1062be07340ebc148c7119cd16e980792eeb1653.
+1. Hacked dot identifier and removed the base class of lexer and parser https://github.com/bytebase/mysql-parser/commit/1d535c32a0be05d14ffc333f08f9a17d375ce922.
 
 ## Test the parser
 
