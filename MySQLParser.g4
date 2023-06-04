@@ -3821,7 +3821,6 @@ windowName:
 // Identifiers excluding keywords (except if they are quoted). IDENT_sys in sql_yacc.yy.
 pureIdentifier:
     (IDENTIFIER | BACK_TICK_QUOTED_ID)
-    | DOUBLE_QUOTED_TEXT
 ;
 
 // Identifiers including a certain set of keywords, which are allowed also if not quoted.
