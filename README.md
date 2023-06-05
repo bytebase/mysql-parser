@@ -43,3 +43,7 @@ go test -v
 
 - ANTLR4 Getting Started https://github.com/antlr/antlr4/blob/master/doc/getting-started.md
 - ANTLR4 Go Garget https://github.com/antlr/antlr4/blob/master/doc/go-target.md
+
+## Change Logs
+
+- 2023-06-05: Support 8.0 CREATE USER statement, specifically the `[COMMENT 'comment_string' | ATTRIBUTE 'json_object']` clause.
