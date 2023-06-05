@@ -61,6 +61,8 @@ func TestMySQLDBSQLParser(t *testing.T) {
 
 			p.BuildParseTrees = true
 
+			_ = p.Query()
+
 			require.Equal(t, 0, lexerErrors.errors)
 			require.Equal(t, 0, parserErrors.errors)
 		})
