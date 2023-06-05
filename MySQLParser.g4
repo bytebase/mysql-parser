@@ -1761,7 +1761,7 @@ createUser:
 ;
 
 createUserTail:
-    requireClause? connectOptions? accountLockPasswordExpireOptions*
+    requireClause? connectOptions? accountLockPasswordExpireOptions* (COMMENT_SYMBOL textStringLiteral)? (ATTRIBUTE_SYMBOL textStringLiteral)?
     | /* empty */
 ;
 

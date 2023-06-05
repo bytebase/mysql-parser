@@ -943,6 +943,7 @@ ZEROFILL_SYMBOL:                 Z E R O F I L L;                            // 
 /*
    Tokens from MySQL 8.0
 */
+ATTRIBUTE_SYMBOL:                A T T R I B U T E                           ;
 PERSIST_SYMBOL:                  P E R S I S T                               ;
 ROLE_SYMBOL:                     R O L E                                     ;
 ADMIN_SYMBOL:                    A D M I N                                   ;
