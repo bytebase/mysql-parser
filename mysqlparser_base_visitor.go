@@ -7,6 +7,10 @@ type BaseMySQLParserVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
 
+func (v *BaseMySQLParserVisitor) VisitScript(ctx *ScriptContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseMySQLParserVisitor) VisitQuery(ctx *QueryContext) interface{} {
 	return v.VisitChildren(ctx)
 }

@@ -7,6 +7,9 @@ import "github.com/antlr4-go/antlr/v4"
 type MySQLParserListener interface {
 	antlr.ParseTreeListener
 
+	// EnterScript is called when entering the script production.
+	EnterScript(c *ScriptContext)
+
 	// EnterQuery is called when entering the query production.
 	EnterQuery(c *QueryContext)
 
@@ -1944,6 +1947,9 @@ type MySQLParserListener interface {
 
 	// EnterRoleOrLabelKeyword is called when entering the roleOrLabelKeyword production.
 	EnterRoleOrLabelKeyword(c *RoleOrLabelKeywordContext)
+
+	// ExitScript is called when exiting the script production.
+	ExitScript(c *ScriptContext)
 
 	// ExitQuery is called when exiting the query production.
 	ExitQuery(c *QueryContext)

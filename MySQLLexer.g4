@@ -45,7 +45,7 @@ lexer grammar MySQLLexer;
 // $antlr-format allowShortRulesOnASingleLine on, alignSemicolons ownLine
 
 options {
-    // superClass = MySQLBaseLexer;
+    superClass = MySQLBaseLexer;
     tokenVocab = predefined; // Keyword tokens in a predefined order for simpler checks.
     exportMacro = PARSERS_PUBLIC_TYPE;
 }
@@ -195,7 +195,7 @@ FLOAT_NUMBER:   (DIGITS? DOT_SYMBOL)? DIGITS [eE] (MINUS_OPERATOR | PLUS_OPERATO
 // Hence it's defined before all keywords.
 // Here we make use of the ability in our base lexer to emit multiple tokens with a single rule.
 DOT_IDENTIFIER:
-    DOT_SYMBOL LETTER_WHEN_UNQUOTED_NO_DIGIT LETTER_WHEN_UNQUOTED* -> type(IDENTIFIER)
+    DOT_SYMBOL LETTER_WHEN_UNQUOTED_NO_DIGIT LETTER_WHEN_UNQUOTED* { l.EmitDot(); } -> type(IDENTIFIER)
 ;
 
 /*

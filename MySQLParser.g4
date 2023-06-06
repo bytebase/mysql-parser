@@ -82,9 +82,12 @@ options {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+script:
+    query* EOF?
+;
+
 query:
-    EOF
-    | (simpleStatement | beginWork) (SEMICOLON_SYMBOL EOF? | EOF)
+    (simpleStatement | beginWork) (SEMICOLON_SYMBOL EOF? | EOF)
 ;
 
 simpleStatement:

@@ -20,6 +20,12 @@ func (s *BaseMySQLParserListener) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseMySQLParserListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
+// EnterScript is called when production script is entered.
+func (s *BaseMySQLParserListener) EnterScript(ctx *ScriptContext) {}
+
+// ExitScript is called when production script is exited.
+func (s *BaseMySQLParserListener) ExitScript(ctx *ScriptContext) {}
+
 // EnterQuery is called when production query is entered.
 func (s *BaseMySQLParserListener) EnterQuery(ctx *QueryContext) {}
 

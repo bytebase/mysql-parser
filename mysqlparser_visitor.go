@@ -30,6 +30,9 @@ import "github.com/antlr4-go/antlr/v4"
 type MySQLParserVisitor interface {
 	antlr.ParseTreeVisitor
 
+	// Visit a parse tree produced by MySQLParser#script.
+	VisitScript(ctx *ScriptContext) interface{}
+
 	// Visit a parse tree produced by MySQLParser#query.
 	VisitQuery(ctx *QueryContext) interface{}
 
