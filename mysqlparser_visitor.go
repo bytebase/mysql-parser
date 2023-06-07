@@ -30,6 +30,9 @@ import "github.com/antlr4-go/antlr/v4"
 type MySQLParserVisitor interface {
 	antlr.ParseTreeVisitor
 
+	// Visit a parse tree produced by MySQLParser#script.
+	VisitScript(ctx *ScriptContext) interface{}
+
 	// Visit a parse tree produced by MySQLParser#query.
 	VisitQuery(ctx *QueryContext) interface{}
 
@@ -41,6 +44,9 @@ type MySQLParserVisitor interface {
 
 	// Visit a parse tree produced by MySQLParser#alterDatabase.
 	VisitAlterDatabase(ctx *AlterDatabaseContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#alterDatabaseOption.
+	VisitAlterDatabaseOption(ctx *AlterDatabaseOptionContext) interface{}
 
 	// Visit a parse tree produced by MySQLParser#alterEvent.
 	VisitAlterEvent(ctx *AlterEventContext) interface{}
@@ -1095,6 +1101,9 @@ type MySQLParserVisitor interface {
 	// Visit a parse tree produced by MySQLParser#simpleExprConvert.
 	VisitSimpleExprConvert(ctx *SimpleExprConvertContext) interface{}
 
+	// Visit a parse tree produced by MySQLParser#simpleExprSearchJson.
+	VisitSimpleExprSearchJson(ctx *SimpleExprSearchJsonContext) interface{}
+
 	// Visit a parse tree produced by MySQLParser#simpleExprVariable.
 	VisitSimpleExprVariable(ctx *SimpleExprVariableContext) interface{}
 
@@ -1235,6 +1244,18 @@ type MySQLParserVisitor interface {
 
 	// Visit a parse tree produced by MySQLParser#functionCall.
 	VisitFunctionCall(ctx *FunctionCallContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#searchJsonFunction.
+	VisitSearchJsonFunction(ctx *SearchJsonFunctionContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#jsonValueReturning.
+	VisitJsonValueReturning(ctx *JsonValueReturningContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#jsonValueOnEmpty.
+	VisitJsonValueOnEmpty(ctx *JsonValueOnEmptyContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#jsonValueOnError.
+	VisitJsonValueOnError(ctx *JsonValueOnErrorContext) interface{}
 
 	// Visit a parse tree produced by MySQLParser#udfExprList.
 	VisitUdfExprList(ctx *UdfExprListContext) interface{}

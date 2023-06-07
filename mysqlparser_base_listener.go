@@ -20,6 +20,12 @@ func (s *BaseMySQLParserListener) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseMySQLParserListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
+// EnterScript is called when production script is entered.
+func (s *BaseMySQLParserListener) EnterScript(ctx *ScriptContext) {}
+
+// ExitScript is called when production script is exited.
+func (s *BaseMySQLParserListener) ExitScript(ctx *ScriptContext) {}
+
 // EnterQuery is called when production query is entered.
 func (s *BaseMySQLParserListener) EnterQuery(ctx *QueryContext) {}
 
@@ -43,6 +49,12 @@ func (s *BaseMySQLParserListener) EnterAlterDatabase(ctx *AlterDatabaseContext) 
 
 // ExitAlterDatabase is called when production alterDatabase is exited.
 func (s *BaseMySQLParserListener) ExitAlterDatabase(ctx *AlterDatabaseContext) {}
+
+// EnterAlterDatabaseOption is called when production alterDatabaseOption is entered.
+func (s *BaseMySQLParserListener) EnterAlterDatabaseOption(ctx *AlterDatabaseOptionContext) {}
+
+// ExitAlterDatabaseOption is called when production alterDatabaseOption is exited.
+func (s *BaseMySQLParserListener) ExitAlterDatabaseOption(ctx *AlterDatabaseOptionContext) {}
 
 // EnterAlterEvent is called when production alterEvent is entered.
 func (s *BaseMySQLParserListener) EnterAlterEvent(ctx *AlterEventContext) {}
@@ -2190,6 +2202,12 @@ func (s *BaseMySQLParserListener) EnterSimpleExprConvert(ctx *SimpleExprConvertC
 // ExitSimpleExprConvert is called when production simpleExprConvert is exited.
 func (s *BaseMySQLParserListener) ExitSimpleExprConvert(ctx *SimpleExprConvertContext) {}
 
+// EnterSimpleExprSearchJson is called when production simpleExprSearchJson is entered.
+func (s *BaseMySQLParserListener) EnterSimpleExprSearchJson(ctx *SimpleExprSearchJsonContext) {}
+
+// ExitSimpleExprSearchJson is called when production simpleExprSearchJson is exited.
+func (s *BaseMySQLParserListener) ExitSimpleExprSearchJson(ctx *SimpleExprSearchJsonContext) {}
+
 // EnterSimpleExprVariable is called when production simpleExprVariable is entered.
 func (s *BaseMySQLParserListener) EnterSimpleExprVariable(ctx *SimpleExprVariableContext) {}
 
@@ -2479,6 +2497,30 @@ func (s *BaseMySQLParserListener) EnterFunctionCall(ctx *FunctionCallContext) {}
 
 // ExitFunctionCall is called when production functionCall is exited.
 func (s *BaseMySQLParserListener) ExitFunctionCall(ctx *FunctionCallContext) {}
+
+// EnterSearchJsonFunction is called when production searchJsonFunction is entered.
+func (s *BaseMySQLParserListener) EnterSearchJsonFunction(ctx *SearchJsonFunctionContext) {}
+
+// ExitSearchJsonFunction is called when production searchJsonFunction is exited.
+func (s *BaseMySQLParserListener) ExitSearchJsonFunction(ctx *SearchJsonFunctionContext) {}
+
+// EnterJsonValueReturning is called when production jsonValueReturning is entered.
+func (s *BaseMySQLParserListener) EnterJsonValueReturning(ctx *JsonValueReturningContext) {}
+
+// ExitJsonValueReturning is called when production jsonValueReturning is exited.
+func (s *BaseMySQLParserListener) ExitJsonValueReturning(ctx *JsonValueReturningContext) {}
+
+// EnterJsonValueOnEmpty is called when production jsonValueOnEmpty is entered.
+func (s *BaseMySQLParserListener) EnterJsonValueOnEmpty(ctx *JsonValueOnEmptyContext) {}
+
+// ExitJsonValueOnEmpty is called when production jsonValueOnEmpty is exited.
+func (s *BaseMySQLParserListener) ExitJsonValueOnEmpty(ctx *JsonValueOnEmptyContext) {}
+
+// EnterJsonValueOnError is called when production jsonValueOnError is entered.
+func (s *BaseMySQLParserListener) EnterJsonValueOnError(ctx *JsonValueOnErrorContext) {}
+
+// ExitJsonValueOnError is called when production jsonValueOnError is exited.
+func (s *BaseMySQLParserListener) ExitJsonValueOnError(ctx *JsonValueOnErrorContext) {}
 
 // EnterUdfExprList is called when production udfExprList is entered.
 func (s *BaseMySQLParserListener) EnterUdfExprList(ctx *UdfExprListContext) {}

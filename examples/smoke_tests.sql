@@ -26,7 +26,7 @@ select 1 = 16/4 between 5 and 6 as c;
 #end
 #begin
 -- Functions test
-select *, sqrt(a), lower(substring(str, 'a', length(str)/2)) as col3 from tab1 where a is not \N;
+-- select *, sqrt(a), lower(substring(str, 'a', length(str)/2)) as col3 from tab1 where a is not \N; # MySQL 8.0 cannot parse this sql.
 #end
 #begin
 -- Spatial data type tests

@@ -82,9 +82,12 @@ options {
 
 //----------------------------------------------------------------------------------------------------------------------
 
+script:
+    query* EOF?
+;
+
 query:
-    EOF
-    | (simpleStatement | beginWork) (SEMICOLON_SYMBOL EOF? | EOF)
+    (simpleStatement | beginWork) (SEMICOLON_SYMBOL EOF? | EOF)
 ;
 
 simpleStatement:
@@ -150,9 +153,14 @@ alterStatement:
 
 alterDatabase:
     DATABASE_SYMBOL schemaRef (
-        createDatabaseOption+
+        alterDatabaseOption+
         | UPGRADE_SYMBOL DATA_SYMBOL DIRECTORY_SYMBOL NAME_SYMBOL
     )
+;
+
+alterDatabaseOption:
+    createDatabaseOption
+    | READ_SYMBOL ONLY_SYMBOL EQUAL_OPERATOR? (DEFAULT_SYMBOL | INT_NUMBER)
 ;
 
 alterEvent:
@@ -274,6 +282,10 @@ alterListItem:
         SET_SYMBOL DEFAULT_SYMBOL (
             exprWithParentheses
             | signedLiteral
+        )
+        | SET_SYMBOL (
+            VISIBLE_SYMBOL
+            | INVISIBLE_SYMBOL
         )
         | DROP_SYMBOL DEFAULT_SYMBOL
     )
@@ -1845,7 +1857,7 @@ withRoles:
 ;
 
 grantAs:
-    AS_SYMBOL USER_SYMBOL withRoles?
+    AS_SYMBOL user withRoles?
 ;
 
 versionedRequireClause:
@@ -1915,6 +1927,10 @@ roleOrPrivilege:
     | SHOW_SYMBOL VIEW_SYMBOL
     | ALTER_SYMBOL ROUTINE_SYMBOL?
     | (CREATE_SYMBOL | DROP_SYMBOL) ROLE_SYMBOL
+    // The following are AWS RDS MySQL extensions.
+    | LOAD_SYMBOL FROM_SYMBOL S3_SYMBOL
+    | SELECT_SYMBOL INTO_SYMBOL S3_SYMBOL
+    | INVOKE_SYMBOL LAMBDA_SYMBOL
 ;
 
 grantIdentifier:
@@ -2460,6 +2476,7 @@ simpleExpr:
     | DEFAULT_SYMBOL OPEN_PAR_SYMBOL simpleIdentifier CLOSE_PAR_SYMBOL                                   # simpleExprDefault
     | VALUES_SYMBOL OPEN_PAR_SYMBOL simpleIdentifier CLOSE_PAR_SYMBOL                                    # simpleExprValues
     | INTERVAL_SYMBOL expr interval PLUS_OPERATOR expr                                                   # simpleExprInterval
+    | searchJsonFunction                                                                                 # simpleExprSearchJson
 ;
 
 arrayCast:
@@ -2697,6 +2714,22 @@ substringFunction:
 functionCall:
     pureIdentifier OPEN_PAR_SYMBOL udfExprList? CLOSE_PAR_SYMBOL     // For both UDF + other functions.
     | qualifiedIdentifier OPEN_PAR_SYMBOL exprList? CLOSE_PAR_SYMBOL // Other functions only.
+;
+
+searchJsonFunction:
+    JSON_VALUE_SYMBOL OPEN_PAR_SYMBOL (expr COMMA_SYMBOL textLiteral jsonValueReturning? jsonValueOnEmpty? jsonValueOnError?) CLOSE_PAR_SYMBOL
+;
+
+jsonValueReturning:
+    RETURNING_SYMBOL castType
+;
+
+jsonValueOnEmpty:
+    (nullLiteral | ERROR_SYMBOL | DEFAULT_SYMBOL expr) ON_SYMBOL EMPTY_SYMBOL
+;
+
+jsonValueOnError:
+    (nullLiteral | ERROR_SYMBOL | DEFAULT_SYMBOL expr) ON_SYMBOL ERROR_SYMBOL
 ;
 
 udfExprList:
@@ -3102,6 +3135,7 @@ fieldDefinition:
 
 columnAttribute:
     NOT_SYMBOL? nullLiteral
+    | (VISIBLE_SYMBOL | INVISIBLE_SYMBOL)
     | NOT_SYMBOL SECONDARY_SYMBOL
     | value = DEFAULT_SYMBOL (
         signedLiteral
@@ -3157,6 +3191,7 @@ references:
 deleteOption:
     (RESTRICT_SYMBOL | CASCADE_SYMBOL)
     | SET_SYMBOL nullLiteral
+    | SET_SYMBOL DEFAULT_SYMBOL
     | NO_SYMBOL ACTION_SYMBOL
 ;
 
@@ -3384,6 +3419,7 @@ createTableOption: // In the order as they appear in the server grammar.
     | option = STORAGE_SYMBOL (DISK_SYMBOL | MEMORY_SYMBOL)
     | option = CONNECTION_SYMBOL EQUAL_OPERATOR? textString
     | option = KEY_BLOCK_SIZE_SYMBOL EQUAL_OPERATOR? ulong_number
+    | option = START_SYMBOL TRANSACTION_SYMBOL
 ;
 
 ternaryOption:
@@ -3821,7 +3857,7 @@ windowName:
 
 // Identifiers excluding keywords (except if they are quoted). IDENT_sys in sql_yacc.yy.
 pureIdentifier:
-    (IDENTIFIER | BACK_TICK_QUOTED_ID)
+    (IDENTIFIER | BACK_TICK_QUOTED_ID | UNDERLINE_SYMBOL)
 ;
 
 // Identifiers including a certain set of keywords, which are allowed also if not quoted.
@@ -4057,6 +4093,14 @@ identifierKeyword:
         | identifierKeywordsAmbiguous2Labels
         | identifierKeywordsAmbiguous3Roles
         | identifierKeywordsAmbiguous4SystemVariables
+    )
+    | (
+      S3_SYMBOL
+      | INVOKE_SYMBOL  
+      | LAMBDA_SYMBOL
+      | ATTRIBUTE_SYMBOL
+      | JSON_VALUE_SYMBOL
+      | RETURNING_SYMBOL
     )
 ;
 

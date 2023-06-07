@@ -48,7 +48,7 @@ insert into sql_log values(retGUID,log_type,log_text,0,0,current_user(),now());
 CREATE TABLE tbl (tbl.a BIGINT);
 CREATE TABLE tbl (.a BIGINT);
 INSERT INTO tbl (tbl.a) SELECT * FROM another_table;
-INSERT INTO tbl (.tbl.a) SELECT * FROM another_table;
+-- INSERT INTO tbl (.tbl.a) SELECT * FROM another_table; # MySQL 8.0 cannot parse this sql.
 #end
 
 #begin

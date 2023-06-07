@@ -7,6 +7,10 @@ type BaseMySQLParserVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
 
+func (v *BaseMySQLParserVisitor) VisitScript(ctx *ScriptContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseMySQLParserVisitor) VisitQuery(ctx *QueryContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -20,6 +24,10 @@ func (v *BaseMySQLParserVisitor) VisitAlterStatement(ctx *AlterStatementContext)
 }
 
 func (v *BaseMySQLParserVisitor) VisitAlterDatabase(ctx *AlterDatabaseContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitAlterDatabaseOption(ctx *AlterDatabaseOptionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -1427,6 +1435,10 @@ func (v *BaseMySQLParserVisitor) VisitSimpleExprConvert(ctx *SimpleExprConvertCo
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseMySQLParserVisitor) VisitSimpleExprSearchJson(ctx *SimpleExprSearchJsonContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseMySQLParserVisitor) VisitSimpleExprVariable(ctx *SimpleExprVariableContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -1612,6 +1624,22 @@ func (v *BaseMySQLParserVisitor) VisitSubstringFunction(ctx *SubstringFunctionCo
 }
 
 func (v *BaseMySQLParserVisitor) VisitFunctionCall(ctx *FunctionCallContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitSearchJsonFunction(ctx *SearchJsonFunctionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitJsonValueReturning(ctx *JsonValueReturningContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitJsonValueOnEmpty(ctx *JsonValueOnEmptyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitJsonValueOnError(ctx *JsonValueOnErrorContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

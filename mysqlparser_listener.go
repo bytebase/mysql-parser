@@ -7,6 +7,9 @@ import "github.com/antlr4-go/antlr/v4"
 type MySQLParserListener interface {
 	antlr.ParseTreeListener
 
+	// EnterScript is called when entering the script production.
+	EnterScript(c *ScriptContext)
+
 	// EnterQuery is called when entering the query production.
 	EnterQuery(c *QueryContext)
 
@@ -18,6 +21,9 @@ type MySQLParserListener interface {
 
 	// EnterAlterDatabase is called when entering the alterDatabase production.
 	EnterAlterDatabase(c *AlterDatabaseContext)
+
+	// EnterAlterDatabaseOption is called when entering the alterDatabaseOption production.
+	EnterAlterDatabaseOption(c *AlterDatabaseOptionContext)
 
 	// EnterAlterEvent is called when entering the alterEvent production.
 	EnterAlterEvent(c *AlterEventContext)
@@ -1072,6 +1078,9 @@ type MySQLParserListener interface {
 	// EnterSimpleExprConvert is called when entering the simpleExprConvert production.
 	EnterSimpleExprConvert(c *SimpleExprConvertContext)
 
+	// EnterSimpleExprSearchJson is called when entering the simpleExprSearchJson production.
+	EnterSimpleExprSearchJson(c *SimpleExprSearchJsonContext)
+
 	// EnterSimpleExprVariable is called when entering the simpleExprVariable production.
 	EnterSimpleExprVariable(c *SimpleExprVariableContext)
 
@@ -1212,6 +1221,18 @@ type MySQLParserListener interface {
 
 	// EnterFunctionCall is called when entering the functionCall production.
 	EnterFunctionCall(c *FunctionCallContext)
+
+	// EnterSearchJsonFunction is called when entering the searchJsonFunction production.
+	EnterSearchJsonFunction(c *SearchJsonFunctionContext)
+
+	// EnterJsonValueReturning is called when entering the jsonValueReturning production.
+	EnterJsonValueReturning(c *JsonValueReturningContext)
+
+	// EnterJsonValueOnEmpty is called when entering the jsonValueOnEmpty production.
+	EnterJsonValueOnEmpty(c *JsonValueOnEmptyContext)
+
+	// EnterJsonValueOnError is called when entering the jsonValueOnError production.
+	EnterJsonValueOnError(c *JsonValueOnErrorContext)
 
 	// EnterUdfExprList is called when entering the udfExprList production.
 	EnterUdfExprList(c *UdfExprListContext)
@@ -1945,6 +1966,9 @@ type MySQLParserListener interface {
 	// EnterRoleOrLabelKeyword is called when entering the roleOrLabelKeyword production.
 	EnterRoleOrLabelKeyword(c *RoleOrLabelKeywordContext)
 
+	// ExitScript is called when exiting the script production.
+	ExitScript(c *ScriptContext)
+
 	// ExitQuery is called when exiting the query production.
 	ExitQuery(c *QueryContext)
 
@@ -1956,6 +1980,9 @@ type MySQLParserListener interface {
 
 	// ExitAlterDatabase is called when exiting the alterDatabase production.
 	ExitAlterDatabase(c *AlterDatabaseContext)
+
+	// ExitAlterDatabaseOption is called when exiting the alterDatabaseOption production.
+	ExitAlterDatabaseOption(c *AlterDatabaseOptionContext)
 
 	// ExitAlterEvent is called when exiting the alterEvent production.
 	ExitAlterEvent(c *AlterEventContext)
@@ -3010,6 +3037,9 @@ type MySQLParserListener interface {
 	// ExitSimpleExprConvert is called when exiting the simpleExprConvert production.
 	ExitSimpleExprConvert(c *SimpleExprConvertContext)
 
+	// ExitSimpleExprSearchJson is called when exiting the simpleExprSearchJson production.
+	ExitSimpleExprSearchJson(c *SimpleExprSearchJsonContext)
+
 	// ExitSimpleExprVariable is called when exiting the simpleExprVariable production.
 	ExitSimpleExprVariable(c *SimpleExprVariableContext)
 
@@ -3150,6 +3180,18 @@ type MySQLParserListener interface {
 
 	// ExitFunctionCall is called when exiting the functionCall production.
 	ExitFunctionCall(c *FunctionCallContext)
+
+	// ExitSearchJsonFunction is called when exiting the searchJsonFunction production.
+	ExitSearchJsonFunction(c *SearchJsonFunctionContext)
+
+	// ExitJsonValueReturning is called when exiting the jsonValueReturning production.
+	ExitJsonValueReturning(c *JsonValueReturningContext)
+
+	// ExitJsonValueOnEmpty is called when exiting the jsonValueOnEmpty production.
+	ExitJsonValueOnEmpty(c *JsonValueOnEmptyContext)
+
+	// ExitJsonValueOnError is called when exiting the jsonValueOnError production.
+	ExitJsonValueOnError(c *JsonValueOnErrorContext)
 
 	// ExitUdfExprList is called when exiting the udfExprList production.
 	ExitUdfExprList(c *UdfExprListContext)

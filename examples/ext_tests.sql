@@ -27,7 +27,7 @@ select 17 member of('[23, "abc", 17, "ab", 10]');
 #end
 #begin
 -- Functions test
-select *, sqrt(a), lower(substring(str, 'a', length(str)/2)) as col3 from tab1 where a is not \N;
+-- select *, sqrt(a), lower(substring(str, 'a', length(str)/2)) as col3 from tab1 where a is not \N; # MySQL 8.0 cannot parse this sql.
 #end
 #begin
 -- Spatial data type tests
