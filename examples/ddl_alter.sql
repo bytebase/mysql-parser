@@ -40,7 +40,8 @@ alter table table1 drop constraint cons;
 alter table add_test add column col1 int not null;
 alter table `some_table` add (primary key `id` (`id`),`k_id` int unsigned not null,`another_field` smallint not null,index `k_id` (`k_id`));
 alter table `some_table` add column (unique key `another_field` (`another_field`));
-alter table default.task add column xxxx varchar(200) comment 'cdc test';
+-- alter table default.task add column xxxx varchar(200) comment 'cdc test'; # https://dev.mysql.com/doc/refman/8.0/en/identifier-qualifiers.html doesn't say that database name can be unquoted
+alter table task.default add column xxxx varchar(200) comment 'cdc test';
 ALTER TABLE `hcore`.comments COLLATE='utf8mb4_general_ci', CONVERT TO CHARSET UTF8MB4;
 ALTER TABLE T1 ADD FOREIGN KEY ( I )  REFERENCES TT ( I ) ON DELETE SET DEFAULT;
 ALTER TABLE T1 ADD FOREIGN KEY ( I ) REFERENCES TT ( I ) ON UPDATE SET DEFAULT;

@@ -41,9 +41,6 @@ func TestMySQLDBSQLParser(t *testing.T) {
 
 	for _, file := range examples {
 		filePath := path.Join("examples", file.Name())
-		if file.Name() != "bitrix_queries_cut.sql" {
-			continue
-		}
 		t.Run(filePath, func(t *testing.T) {
 			t.Parallel()
 			input, err := antlr.NewFileStream(filePath)

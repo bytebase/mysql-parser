@@ -35,7 +35,7 @@ select .2e3 c1, .2e-4 as c5;
 #begin
 -- -- -- Number float collision test
 select t1e2 as e1 from t;
-select 1e2t as col from t;
+-- select 1e2t as col from t; # MySQL 8.0 cannot parse this sql.
 #end
 #begin
 -- -- -- Hexadecimal literal
@@ -65,9 +65,9 @@ select 'abc' ' bcd' ' \' \' ' as col, \N c2, -.1e-3;
 #begin
 -- -- Variables
 SELECT @myvar;
-select * from t1 limit @varcount;
-select * from t1 limit @varoffset, @varcount;
-select * from t1 limit @varcount offset @varoffset;
+-- select * from t1 limit @varcount; # MySQL 8.0 cannot parse this sql.
+-- select * from t1 limit @varoffset, @varcount; # MySQL 8.0 cannot parse this sql.
+-- select * from t1 limit @varcount offset @varoffset; # MySQL 8.0 cannot parse this sql.
 #end
 
 #begin
@@ -164,7 +164,7 @@ SELECT JSON_STORAGE_FREE(jcol), JSON_STORAGE_FREE(jcol) FROM jtable;
 SELECT o_id, JSON_ARRAYAGG(attribute) AS attributes FROM t3 GROUP BY o_id;
 SELECT o_id, JSON_OBJECTAGG(attribute, value) FROM t3 GROUP BY o_id;
 #end
-SELECT trigger.num FROM test `trigger`;
+SELECT `trigger`.num FROM test `trigger`;
 -- Valid when SELECT is in stored procedure
 SELECT * FROM test LIMIT LIMIT1,LIMIT2;
 -- SCHEMA as a function name

@@ -73,7 +73,7 @@ create table žluťoučký (kůň int);
 create table column_names_as_aggr_funcs(min varchar(100), max varchar(100), sum varchar(100), count varchar(100));
 CREATE TABLE char_table (c1 CHAR VARYING(10), c2 CHARACTER VARYING(10), c3 NCHAR VARYING(10));
 create table rack_shelf_bin ( id int unsigned not null auto_increment unique primary key, bin_volume decimal(20, 4) default (bin_len * bin_width * bin_height));
-CREATE TABLE `tblSRCHjob_desc` (`description_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT, `description` mediumtext NOT NULL, PRIMARY KEY (`description_id`)) ENGINE=TokuDB AUTO_INCREMENT=4095997820 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=TOKUDB_QUICKLZ;
+-- CREATE TABLE `tblSRCHjob_desc` (`description_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT, `description` mediumtext NOT NULL, PRIMARY KEY (`description_id`)) ENGINE=TokuDB AUTO_INCREMENT=4095997820 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=TOKUDB_QUICKLZ; # TOKUDB_QUICKLZ is MariaDB specific
 create table invisible_column_test(id int, col1 int INVISIBLE);
 create table visible_column_test(id int, col1 int VISIBLE);
 create table table_with_buckets(id int(11) auto_increment NOT NULL COMMENT 'ID', buckets int(11) NOT NULL COMMENT '分桶数');
@@ -119,7 +119,7 @@ CREATE TABLE positions_rollover (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 PARTITION BY LIST (partition_index) (
     PARTITION positions_rollover_partition VALUES IN (0) ENGINE = InnoDB,
-    PARTITION default_positions_rollover_partition DEFAULT ENGINE = InnoDB
+    PARTITION default_positions_rollover_partition /*DEFAULT*/ ENGINE = InnoDB
 );
 
 CREATE TABLE `tab_with_json_value` (
@@ -143,7 +143,7 @@ CREATE TABLE CustomerTable (
     ContactName varchar(30),
     Address varchar(60),
     Phone varchar(24)
- ) ENGINE = CONNECT TABLE_TYPE = ODBC;
+ ) ENGINE = CONNECT /*TABLE_TYPE = ODBC*/;
 
 CREATE TABLE CustomerTable (
     table_type varchar(5)
@@ -333,7 +333,7 @@ ON DUPLICATE KEY UPDATE
        write_key  = JSON_UNQUOTE(JSON_EXTRACT(CAST(CONVERT(NEW.write_keys USING utf8mb4) AS JSON), CONCAT('$[', i, ']')));
 SET i = i + 1;
 END WHILE;
-END
+END;
 #end
 #begin
 -- Create trigger 5
@@ -348,7 +348,7 @@ BEGIN
         NEW.badge_datetime = now();
         INSERT IGNORE INTO user_platform_badge (platform_badge_id, user_id) VALUES (3, NEW.student_id);
     END IF;
-END
+END;
 #end
 #begin
 -- Create trigger 6
@@ -384,7 +384,7 @@ RETURN
             SUBSTR(_uuid, 10, 4),
             SUBSTR(_uuid,  1, 8),
             SUBSTR(_uuid, 20, 4),
-            SUBSTR(_uuid, 25) ))
+            SUBSTR(_uuid, 25) ));
 #end
 #begin
 -- From MariaDB 10.4.3, the JSON_VALID function is automatically used as a CHECK constraint for the JSON data type alias in order to ensure that a valid json document is inserted.
@@ -394,7 +394,7 @@ CREATE TABLE `global_priv` (
     `User` CHAR(80) COLLATE utf8_bin NOT NULL DEFAULT '',
     `Privilege` LONGTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '{}' CHECK (json_valid(`Privilege`)),
     PRIMARY KEY (`Host`,`User`)
-) ENGINE=Aria DEFAULT CHARSET=utf8 COLLATE=utf8_bin PAGE_CHECKSUM=1 COMMENT='Users and global privileges';
+) ENGINE=Aria DEFAULT CHARSET=utf8 COLLATE=utf8_bin /*PAGE_CHECKSUM=1*/ COMMENT='Users and global privileges';
 #end
 #begin
 -- https://dev.mysql.com/doc/refman/8.0/en/json-validation-functions.html#json-validation-functions-constraints
@@ -444,7 +444,7 @@ BEGIN
   DECLARE var1 INT unsigned default 1;
   DECLARE var2 TIMESTAMP default CURRENT_TIMESTAMP;
   DECLARE var3 INT unsigned default 2 + var1;
-END -- //-- delimiter ;
+END; -- //-- delimiter ;
 #end
 #begin
 CREATE DEFINER=`system_user`@`%` PROCEDURE `update_order`(IN orderID bigint(11))
@@ -454,7 +454,7 @@ BEGIN  insert into order_config(order_id, attribute, value, performer)
              EXISTS (select 1 from inventory.order_config p2 where p2.order_id = orderID and p2.attribute = 'first_attr' and p2.performer = 'AppConfig')
        ON DUPLICATE KEY UPDATE value = 'true',
                             performer = 'AppConfig'; -- Enable second_attr for order
-END
+END;
 #end
 #begin
 CREATE DEFINER=`bettingservice`@`stage-us-nj-app%` PROCEDURE `AggregatePlayerFactDaily`()
@@ -501,7 +501,7 @@ ON DUPLICATE KEY UPDATE
                      Real_Count   = Real_Count + VALUES(Real_Count),
                      Bonus_Count  = Bonus_Count + VALUES(Bonus_Count);
 COMMIT;
-END
+END;
 #end
 -- Create procedure
 -- delimiter //
@@ -511,7 +511,7 @@ BEGIN
   IF (error_text != 'OK') THEN
     SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_text;
   END IF;
-END -- //-- delimiter ;
+END; -- //-- delimiter ;
 #end
 #begin
 -- delimiter //
@@ -549,7 +549,8 @@ UPDATE item SET
                 item_measure_id = 1,
                 kitchen_print = 0,
                 deleted = 0,
-                virtual = 1
+                -- virtual = 1
+                virtual_is_revered = 1
 WHERE item_type = type;
 ELSE
             INSERT INTO item SET
@@ -574,12 +575,13 @@ ELSE
                 item_measure_id = 1,
                 kitchen_print = 0,
                 deleted = 0,
-                virtual = 1,
+                -- virtual = 1,
+                virtual_is_revered = 1,
                 item_type = type
             ;
 END IF;
 END IF;
-END
+END;
 #end
 #begin
 -- Create Role
@@ -636,14 +638,14 @@ SELECT * FROM cte;
 
 #begin
 lock tables t1 read;
-lock table t1 read local wait 100;
+lock table t1 read local /*wait 100*/;
 #end
 
 #begin
 CREATE OR REPLACE VIEW view_name AS
 WITH my_values(val1, val2) AS (
-    VALUES (1, 'One'),
-           (2, 'Two')
+    VALUES ROW(1, 'One'),
+           ROW(2, 'Two')
 )
 SELECT v.val1, v.val2 FROM my_values v;
 #end

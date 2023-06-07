@@ -1,6 +1,10 @@
 package parser
 
-import "github.com/antlr4-go/antlr/v4"
+import (
+	"strings"
+
+	"github.com/antlr4-go/antlr/v4"
+)
 
 type MySQLBaseLexer struct {
 	*antlr.BaseLexer
@@ -31,8 +35,114 @@ func (l *MySQLBaseLexer) NextToken() antlr.Token {
 
 // EmitDot puts a DOT token onto the pending token list.
 func (l *MySQLBaseLexer) EmitDot() {
-	// TODO(rebelice): may use DOT_SYMBOL instead of l.GetType()
-	dot := l.GetTokenFactory().Create(l.GetTokenSourceCharStreamPair(), l.GetType(), l.GetText(), antlr.TokenDefaultChannel, l.TokenStartCharIndex, l.TokenStartCharIndex, l.TokenStartLine, l.TokenStartColumn)
+	dot := l.GetTokenFactory().Create(l.GetTokenSourceCharStreamPair(), MySQLLexerDOT_SYMBOL, l.GetText(), antlr.TokenDefaultChannel, l.TokenStartCharIndex, l.TokenStartCharIndex, l.TokenStartLine, l.TokenStartColumn)
 	l.pendingTokens = append(l.pendingTokens, dot)
 	l.TokenStartCharIndex++
+}
+
+// DetermineNumericType determines the numeric type of a given text.
+func (l *MySQLBaseLexer) DetermineNumericType(text string) int {
+	longStr := "2147483647"
+	longLen := len(longStr)
+	signedLongStr := "-2147483648"
+	longLongStr := "9223372036854775807"
+	longLongLen := len(longLongStr)
+	signedLongLongStr := "-9223372036854775808"
+	signedLongLongLen := len(signedLongLongStr) - 1 // -1 because we don't count the leading '-'
+	unsignedLongLongStr := "18446744073709551615"
+	unsignedLongLongLen := len(unsignedLongLongStr)
+
+	// The original code checks for leading +/- but actually that can never happen, neither in the
+	// server parser (as a digit is used to trigger processing in the lexer) nor in our parser
+	// as our rules are defined without signs. But we do it anyway for maximum compatibility.
+	length := len(text)
+	if length < longLen {
+		return MySQLLexerINT_NUMBER
+	}
+	negative := false
+
+	if strings.HasPrefix(text, "+") {
+		text = text[1:]
+		length--
+	} else if strings.HasPrefix(text, "-") {
+		text = text[1:]
+		length--
+		negative = true
+	}
+
+	text = strings.TrimLeft(text, "0")
+	length = len(text)
+
+	if length < longLen {
+		return MySQLLexerINT_NUMBER
+	}
+
+	var smaller, bigger int
+	var cmp string
+
+	if negative {
+		if length == longLen {
+			cmp = signedLongStr[1:]
+			smaller = MySQLLexerINT_NUMBER
+			bigger = MySQLLexerLONG_NUMBER
+		} else if length < signedLongLongLen {
+			return MySQLLexerLONG_NUMBER
+		} else if length > signedLongLongLen {
+			return MySQLLexerDECIMAL_NUMBER
+		} else {
+			cmp = signedLongLongStr[1:]
+			smaller = MySQLLexerLONG_NUMBER
+			bigger = MySQLLexerDECIMAL_NUMBER
+		}
+	} else {
+		if length == longLen {
+			cmp = longStr
+			smaller = MySQLLexerINT_NUMBER
+			bigger = MySQLLexerLONG_NUMBER
+		} else if length < longLongLen {
+			return MySQLLexerLONG_NUMBER
+		} else if length > longLongLen {
+			if length > unsignedLongLongLen {
+				return MySQLLexerDECIMAL_NUMBER
+			}
+			cmp = unsignedLongLongStr
+			smaller = MySQLLexerULONGLONG_NUMBER
+			bigger = MySQLLexerDECIMAL_NUMBER
+		} else {
+			cmp = longLongStr
+			smaller = MySQLLexerLONG_NUMBER
+			bigger = MySQLLexerULONGLONG_NUMBER
+		}
+	}
+
+	for i := 0; i < len(cmp); i++ {
+		if cmp[i] != text[i] {
+			if text[i] < cmp[i] {
+				return smaller
+			} else {
+				return bigger
+			}
+		}
+	}
+
+	return smaller
+}
+
+// DetermineFunction determines the function type of a given text.
+func (l *MySQLBaseLexer) DetermineFunction(proposed int) int {
+	if l.GetInputStream().LA(1) == int('(') {
+		return proposed
+	}
+	return MySQLLexerIDENTIFIER
+}
+
+// CheckCharset checks the charset of a given text.
+func (l *MySQLBaseLexer) CheckCharset(test string) int {
+	switch test {
+	case "_utf8", "_utf8mb3", "_utf8mb4", "_ucs2", "_big5", "_latin2",
+		"_ujis", "_binary", "_cp1250", "_latin1":
+		return MySQLLexerUNDERSCORE_CHARSET
+	default:
+		return MySQLLexerIDENTIFIER
+	}
 }
