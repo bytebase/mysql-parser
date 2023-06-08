@@ -35,7 +35,7 @@ func (l *MySQLBaseLexer) NextToken() antlr.Token {
 
 // EmitDot puts a DOT token onto the pending token list.
 func (l *MySQLBaseLexer) EmitDot() {
-	dot := l.GetTokenFactory().Create(l.GetTokenSourceCharStreamPair(), MySQLLexerDOT_SYMBOL, l.GetText(), antlr.TokenDefaultChannel, l.TokenStartCharIndex, l.TokenStartCharIndex, l.TokenStartLine, l.TokenStartColumn)
+	dot := l.GetTokenFactory().Create(l.GetTokenSourceCharStreamPair(), MySQLLexerDOT_SYMBOL, ".", antlr.TokenDefaultChannel, l.TokenStartCharIndex, l.TokenStartCharIndex, l.TokenStartLine, l.TokenStartColumn)
 	l.pendingTokens = append(l.pendingTokens, dot)
 	l.TokenStartCharIndex++
 }
