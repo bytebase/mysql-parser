@@ -1,3 +1,4 @@
+;
 #begin
 flush hosts, status;
 #end
@@ -16,3 +17,4 @@ flush local table Foo;
 flush TABLE Foo, Bar;
 flush table Foo, Bar for export;
 #end
+;

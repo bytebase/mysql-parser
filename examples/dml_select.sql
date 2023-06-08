@@ -1,3 +1,4 @@
+;
 #begin
 -- common conustructions tests
 -- -- Literals
@@ -220,4 +221,3 @@ SELECT *
            NESTED PATH '$.b[*]' COLUMNS (b INT PATH '$')
          )
         ) AS tt;
-

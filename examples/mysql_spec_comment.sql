@@ -1,3 +1,4 @@
+;
 #begin
 -- Mysql spec comment
 select 1 /*!, ' hello' */, 2 /*! union select 5, ' world', 10 */;
@@ -18,3 +19,4 @@ select clientname, email from users where clientname='Petrov'/* UNION SELECT 1,l
 --
 --
 #end
+;

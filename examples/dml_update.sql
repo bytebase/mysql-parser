@@ -1,3 +1,4 @@
+;
 #begin
 -- update one-table syntax
 update t set col = 100 where id = 101;
@@ -21,3 +22,4 @@ UPDATE TABLE_1 LEFT JOIN TABLE_2 ON TABLE_1.COLUMN_1= TABLE_2.COLUMN_2 SET TABLE
 -- UPDATE Groups LEFT JOIN (SELECT GroupId, MIN(ValWithinGroup) AS baseVal FROM Groups GROUP BY GroupId) AS GrpSum USING (GroupId) SET ValWithinGroup=ValWithinGroup-baseVal; # MySQL 8.0 cannot parse this sql.
 update Table1 t1 join Table2 t2 on t1.ID=t2.t1ID join Table3 t3 on t2.ID=t3.t2ID set t1.Value=12345 where t3.ID=54321;
 #end
+;

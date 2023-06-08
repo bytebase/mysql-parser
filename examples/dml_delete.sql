@@ -1,3 +1,4 @@
+;
 #begin
 -- delete one-table syntax
 delete from t1 where col1 = true and (col2 - col3 <= (select count(*) from t2) or maincol/2 > 100.2);
@@ -20,3 +21,4 @@ DELETE FROM a1, a2 USING t1 AS a1 INNER JOIN t2 AS a2 WHERE a1.id=a2.id;
 DELETE FROM t1 alias_t1 WHERE alias_t1.col1 > 0;
 DELETE FROM t1 as alias_t1 WHERE alias_t1.col1 > 0;
 #end
+;

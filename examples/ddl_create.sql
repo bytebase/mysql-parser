@@ -1,3 +1,4 @@
+;
 #begin
 -- Create User
 CREATE USER 'test_crm_debezium'@'%' IDENTIFIED WITH 'mysql_native_password' AS '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9' PASSWORD EXPIRE NEVER COMMENT '-';
@@ -649,3 +650,4 @@ WITH my_values(val1, val2) AS (
 )
 SELECT v.val1, v.val2 FROM my_values v;
 #end
+;

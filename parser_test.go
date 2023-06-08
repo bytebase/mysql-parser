@@ -1,6 +1,7 @@
 package parser_test
 
 import (
+	"io/ioutil"
 	"os"
 	"path"
 	"testing"
@@ -43,8 +44,11 @@ func TestMySQLDBSQLParser(t *testing.T) {
 		filePath := path.Join("examples", file.Name())
 		t.Run(filePath, func(t *testing.T) {
 			t.Parallel()
-			input, err := antlr.NewFileStream(filePath)
+			// read all the bytes from the file
+			data, err := ioutil.ReadFile(filePath)
 			require.NoError(t, err)
+
+			input := antlr.NewInputStream(string(data))
 
 			lexer := mysqlparser.NewMySQLLexer(input)
 
@@ -61,10 +65,12 @@ func TestMySQLDBSQLParser(t *testing.T) {
 
 			p.BuildParseTrees = true
 
-			_ = p.Script()
+			tree := p.Script()
 
 			require.Equal(t, 0, lexerErrors.errors)
 			require.Equal(t, 0, parserErrors.errors)
+
+			require.Equal(t, string(data), stream.GetTextFromRuleContext(tree))
 		})
 	}
 }

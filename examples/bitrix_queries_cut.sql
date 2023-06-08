@@ -1,3 +1,4 @@
+;
 #begin 1
 SET NAMES 'utf8';
 SET collation_connection = "utf8_unicode_ci";
@@ -2004,3 +2005,4 @@ SELECT DISTINCT
 					WHERE BS.ID=95
 						AND BS.IBLOCK_ID=9;
 #end
+;

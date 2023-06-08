@@ -1,3 +1,4 @@
+;
 #begin
 -- Alter Table
 alter table ship_class add column ship_spec varchar(150) first, add somecol int after start_build;
@@ -106,3 +107,4 @@ ALTER USER 'mattias.hultman' DEFAULT ROLE `prod-spain-mysql-read-only`@`%`;
 rename user user1@100.200.1.1 to user2@100.200.1.2;
 alter user 'user'@'%' IDENTIFIED BY 'newpassword' RETAIN CURRENT PASSWORD;
 #end
+;
