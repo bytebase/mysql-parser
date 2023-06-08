@@ -152,7 +152,7 @@ alterStatement:
 ;
 
 alterDatabase:
-    DATABASE_SYMBOL schemaRef (
+    DATABASE_SYMBOL schemaRef? (
         alterDatabaseOption+
         | UPGRADE_SYMBOL DATA_SYMBOL DIRECTORY_SYMBOL NAME_SYMBOL
     )

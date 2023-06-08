@@ -56,6 +56,7 @@ ALTER TABLE T1 ALTER I SET INVISIBLE;
 -- Alter database
 alter database test default character set = utf8;
 alter schema somedb_name upgrade data directory name;
+alter database character set = utf8mb4 collate = utf8mb4_bin;
 alter database test_1 default encryption = 'Y' read only = 1;
 #end
 #begin
