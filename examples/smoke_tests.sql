@@ -1,3 +1,4 @@
+;
 #begin
 -- Intersections
 -- -- Binary: charset and datatype
@@ -33,3 +34,10 @@ select 1 = 16/4 between 5 and 6 as c;
 INSERT INTO geom VALUES (GeomFromWKB(0x0101000000000000000000F03F000000000000F03F));
 select y(point(1.25, 3.47)) as y, x(point(1.25, 3.47)) as x;
 #end
+
+#begin
+select * from t;
+/* this is comments with ; */;
+select * from t;
+#end
+;

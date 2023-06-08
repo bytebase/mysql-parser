@@ -1,3 +1,4 @@
+;
 #begin
 -- Intersections
 -- -- Binary: charset and datatype
@@ -63,3 +64,4 @@ GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO, msg = MESSAGE_TEXT;
 GET STACKED DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO, msg = MESSAGE_TEXT;
 GET CURRENT DIAGNOSTICS errcount = NUMBER;
 #end
+;

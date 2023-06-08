@@ -1,3 +1,4 @@
+;
 #begin
 KILL CONNECTION 12345;
 KILL QUERY 12345;
@@ -12,3 +13,5 @@ begin
 	kill query a1;
 end;
 #end
+
+;

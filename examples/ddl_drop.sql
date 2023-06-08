@@ -1,3 +1,4 @@
+;
 #begin
 -- Drop table
 drop temporary table if exists temp_t1;
@@ -75,3 +76,4 @@ drop function bar;
 DROP ROLE 'admin', 'developer';
 DROP ROLE 'webapp'@'localhost';
 #end
+;

@@ -1,3 +1,4 @@
+;
 #begin
 -- insert on select
 insert into t1 select * from t2;
@@ -54,3 +55,4 @@ INSERT INTO tbl (tbl.a) SELECT * FROM another_table;
 #begin
 INSERT INTO t1 (a,b,c) VALUES (1,2,3),(4,5,6) AS new ON DUPLICATE KEY UPDATE c = new.a+new.b; 
 #end
+;

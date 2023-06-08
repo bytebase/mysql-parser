@@ -1,3 +1,4 @@
+;
 #begin
 -- Recursive CTE
 WITH RECURSIVE cte (n) AS (
@@ -30,7 +31,7 @@ WITH RECURSIVE cte AS (
 SELECT * FROM cte;
 #end
 #begin
---Non-recursive Ctes
+-- Non-recursive Ctes
 WITH cte1 AS (
   SELECT * FROM table1 WHERE col1 = 'value'
 ),
@@ -39,4 +40,4 @@ cte2 AS (
 )
 SELECT cte1.col1, cte2.col2 FROM cte1 JOIN cte2 ON cte1.id = cte2.id;
 #end
-
+;
