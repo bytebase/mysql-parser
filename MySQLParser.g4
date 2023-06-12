@@ -83,11 +83,11 @@ options {
 //----------------------------------------------------------------------------------------------------------------------
 
 script:
-    (query | SEMICOLON_SYMBOL)* EOF?
+    (query | SEMICOLON_SYMBOL)* EOF
 ;
 
 query:
-    (simpleStatement | beginWork) (SEMICOLON_SYMBOL EOF? | EOF)
+    (simpleStatement | beginWork) SEMICOLON_SYMBOL
 ;
 
 simpleStatement:

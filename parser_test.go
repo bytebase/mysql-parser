@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"strings"
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
@@ -48,7 +49,8 @@ func TestMySQLDBSQLParser(t *testing.T) {
 			data, err := ioutil.ReadFile(filePath)
 			require.NoError(t, err)
 
-			input := antlr.NewInputStream(string(data))
+			dataString := strings.TrimRight(string(data), " \t\r\n;") + "\n;"
+			input := antlr.NewInputStream(dataString)
 
 			lexer := mysqlparser.NewMySQLLexer(input)
 
@@ -70,7 +72,7 @@ func TestMySQLDBSQLParser(t *testing.T) {
 			require.Equal(t, 0, lexerErrors.errors)
 			require.Equal(t, 0, parserErrors.errors)
 
-			require.Equal(t, string(data), stream.GetTextFromRuleContext(tree))
+			require.Equal(t, dataString, stream.GetTextFromRuleContext(tree))
 		})
 	}
 }
