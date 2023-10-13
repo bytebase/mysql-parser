@@ -4101,12 +4101,14 @@ identifierKeyword:
         | identifierKeywordsAmbiguous4SystemVariables
     )
     | (
+      // Non-reserved keyword list added by Bytebase.
       S3_SYMBOL
       | INVOKE_SYMBOL  
       | LAMBDA_SYMBOL
       | ATTRIBUTE_SYMBOL
       | JSON_VALUE_SYMBOL
       | RETURNING_SYMBOL
+      | INTERSECT_SYMBOL
     )
 ;
 

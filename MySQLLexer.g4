@@ -894,7 +894,6 @@ UNDO_SYMBOL:                     U N D O;                                    // 
 UNICODE_SYMBOL:                  U N I C O D E;
 UNINSTALL_SYMBOL:                U N I N S T A L L;
 UNION_SYMBOL:                    U N I O N;                                  // SQL-2003-R
-INTERSECT_SYMBOL:                I N T E R S E C T;                          // Bytebase Added
 UNIQUE_SYMBOL:                   U N I Q U E;
 UNKNOWN_SYMBOL:                  U N K N O W N;                              // SQL-2003-R
 UNLOCK_SYMBOL:                   U N L O C K;
@@ -1103,6 +1102,7 @@ LAMBDA_SYMBOL:          L A M B D A                                 ; // For AWS
 ATTRIBUTE_SYMBOL:       A T T R I B U T E                           ;
 JSON_VALUE_SYMBOL:      J S O N '_' V A L U E                       ;
 RETURNING_SYMBOL:       R E T U R N I N G                           ;
+INTERSECT_SYMBOL:       I N T E R S E C T                           ;
 
 // String and text types.
 
