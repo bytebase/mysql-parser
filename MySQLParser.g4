@@ -1051,11 +1051,11 @@ queryExpression:
 queryExpressionBody:
     (
         queryPrimary
-        | queryExpressionParens UNION_SYMBOL unionOption? (
+        | queryExpressionParens setOprSymbol setOprOption? (
             queryPrimary
             | queryExpressionParens
         )
-    ) (UNION_SYMBOL unionOption? ( queryPrimary | queryExpressionParens))*
+    ) (setOprSymbol setOprOption? ( queryPrimary | queryExpressionParens))*
 ;
 
 queryExpressionParens:
@@ -1388,7 +1388,13 @@ jtOnResponse:
     | DEFAULT_SYMBOL textStringLiteral
 ;
 
-unionOption:
+setOprSymbol:
+    UNION_SYMBOL
+    | INTERSECT_SYMBOL
+    | EXCEPT_SYMBOL
+;
+
+setOprOption:
     DISTINCT_SYMBOL
     | ALL_SYMBOL
 ;
@@ -4095,12 +4101,14 @@ identifierKeyword:
         | identifierKeywordsAmbiguous4SystemVariables
     )
     | (
+      // Non-reserved keyword list added by Bytebase.
       S3_SYMBOL
       | INVOKE_SYMBOL  
       | LAMBDA_SYMBOL
       | ATTRIBUTE_SYMBOL
       | JSON_VALUE_SYMBOL
       | RETURNING_SYMBOL
+      | INTERSECT_SYMBOL
     )
 ;
 

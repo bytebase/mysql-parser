@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -607,8 +607,11 @@ type MySQLParserListener interface {
 	// EnterJtOnResponse is called when entering the jtOnResponse production.
 	EnterJtOnResponse(c *JtOnResponseContext)
 
-	// EnterUnionOption is called when entering the unionOption production.
-	EnterUnionOption(c *UnionOptionContext)
+	// EnterSetOprSymbol is called when entering the setOprSymbol production.
+	EnterSetOprSymbol(c *SetOprSymbolContext)
+
+	// EnterSetOprOption is called when entering the setOprOption production.
+	EnterSetOprOption(c *SetOprOptionContext)
 
 	// EnterTableAlias is called when entering the tableAlias production.
 	EnterTableAlias(c *TableAliasContext)
@@ -2566,8 +2569,11 @@ type MySQLParserListener interface {
 	// ExitJtOnResponse is called when exiting the jtOnResponse production.
 	ExitJtOnResponse(c *JtOnResponseContext)
 
-	// ExitUnionOption is called when exiting the unionOption production.
-	ExitUnionOption(c *UnionOptionContext)
+	// ExitSetOprSymbol is called when exiting the setOprSymbol production.
+	ExitSetOprSymbol(c *SetOprSymbolContext)
+
+	// ExitSetOprOption is called when exiting the setOprOption production.
+	ExitSetOprOption(c *SetOprOptionContext)
 
 	// ExitTableAlias is called when exiting the tableAlias production.
 	ExitTableAlias(c *TableAliasContext)

@@ -1,5 +1,17 @@
 ;
 #begin
+(select 1 as a, 10 as a2) except distinct (select 1 as a, 10 as a2);
+#end
+
+#begin
+(select 1 as a, 10 as a2) intersect (select 1 as a, 10 as a2);
+#end
+
+#begin
+select * from t1 intersect select * from t2;
+#end
+
+#begin
 select 1 union select 2;
 #end
 
