@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -1232,11 +1232,17 @@ func (s *BaseMySQLParserListener) EnterJtOnResponse(ctx *JtOnResponseContext) {}
 // ExitJtOnResponse is called when production jtOnResponse is exited.
 func (s *BaseMySQLParserListener) ExitJtOnResponse(ctx *JtOnResponseContext) {}
 
-// EnterUnionOption is called when production unionOption is entered.
-func (s *BaseMySQLParserListener) EnterUnionOption(ctx *UnionOptionContext) {}
+// EnterSetOprSymbol is called when production setOprSymbol is entered.
+func (s *BaseMySQLParserListener) EnterSetOprSymbol(ctx *SetOprSymbolContext) {}
 
-// ExitUnionOption is called when production unionOption is exited.
-func (s *BaseMySQLParserListener) ExitUnionOption(ctx *UnionOptionContext) {}
+// ExitSetOprSymbol is called when production setOprSymbol is exited.
+func (s *BaseMySQLParserListener) ExitSetOprSymbol(ctx *SetOprSymbolContext) {}
+
+// EnterSetOprOption is called when production setOprOption is entered.
+func (s *BaseMySQLParserListener) EnterSetOprOption(ctx *SetOprOptionContext) {}
+
+// ExitSetOprOption is called when production setOprOption is exited.
+func (s *BaseMySQLParserListener) ExitSetOprOption(ctx *SetOprOptionContext) {}
 
 // EnterTableAlias is called when production tableAlias is entered.
 func (s *BaseMySQLParserListener) EnterTableAlias(ctx *TableAliasContext) {}
