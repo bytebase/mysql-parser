@@ -9,7 +9,8 @@ import (
 type MySQLBaseLexer struct {
 	*antlr.BaseLexer
 
-	pendingTokens []antlr.Token
+	pendingTokens      []antlr.Token
+	reservedKeywordMap map[string]bool
 }
 
 // NextToken implements antlr.TokenSource
@@ -144,5 +145,58 @@ func (l *MySQLBaseLexer) CheckCharset(test string) int {
 		return MySQLLexerUNDERSCORE_CHARSET
 	default:
 		return MySQLLexerIDENTIFIER
+	}
+}
+
+func (l *MySQLBaseLexer) IsIdentifier(tokenType int) bool {
+	if tokenType == antlr.TokenEOF {
+		return false
+	}
+
+	if tokenType == MySQLLexerIDENTIFIER || tokenType == MySQLLexerBACK_TICK_QUOTED_ID {
+		return true
+	}
+
+	// TODO: Double quoted text represents identifiers only if the ANSI QUOTES sql mode is active.
+
+	symbol := l.GetSymbolicNames()[tokenType]
+	if len(symbol) > 0 && !l.IsReservedKeyword(symbol) {
+		return true
+	}
+	return false
+}
+
+// IsReservedKeyword checks if a given string is a reserved keyword.
+// Currently, we don't check by server version, if it's a reserved keyword in 5.6, 5.7 or 8.0, return true.
+func (l *MySQLBaseLexer) IsReservedKeyword(s string) bool {
+	l.initReversedKeywordMap()
+
+	_, exists := l.reservedKeywordMap[s]
+	return exists
+}
+
+func (l *MySQLBaseLexer) initReversedKeywordMap() {
+	if l.reservedKeywordMap != nil {
+		return
+	}
+
+	l.reservedKeywordMap = make(map[string]bool)
+
+	for _, keyword := range Keywords56 {
+		if keyword.Reserved {
+			l.reservedKeywordMap[keyword.Keyword] = true
+		}
+	}
+
+	for _, keyword := range Keywords57 {
+		if keyword.Reserved {
+			l.reservedKeywordMap[keyword.Keyword] = true
+		}
+	}
+
+	for _, keyword := range Keywords80 {
+		if keyword.Reserved {
+			l.reservedKeywordMap[keyword.Keyword] = true
+		}
 	}
 }
