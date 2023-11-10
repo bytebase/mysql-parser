@@ -3146,6 +3146,9 @@ columnAttribute:
     | value = DEFAULT_SYMBOL (
         signedLiteral
         | NOW_SYMBOL timeFunctionParameters?
+        | CURRENT_TIMESTAMP_SYMBOL timeFunctionParameters?
+        | LOCALTIME_SYMBOL timeFunctionParameters?
+        | LOCALTIMESTAMP_SYMBOL timeFunctionParameters?
         | exprWithParentheses
     )
     | value = ON_SYMBOL UPDATE_SYMBOL NOW_SYMBOL timeFunctionParameters?
