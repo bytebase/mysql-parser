@@ -202,7 +202,7 @@ func (l *MySQLBaseLexer) initReversedKeywordMap() {
 }
 
 // GetBuiltinFunctions returns the list of builtin functions.
-func (l *MySQLBaseLexer) GetBuiltinFunctions() []string {
+func GetBuiltinFunctions() []string {
 	var result []string
 	result = append(result, builtinFunctions...)
 	return result
