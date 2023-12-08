@@ -160,6 +160,7 @@ func (l *MySQLBaseLexer) IsIdentifier(tokenType int) bool {
 	// TODO: Double quoted text represents identifiers only if the ANSI QUOTES sql mode is active.
 
 	symbol := l.GetSymbolicNames()[tokenType]
+	symbol = strings.TrimSuffix(symbol, "_SYMBOL")
 	if len(symbol) > 0 && !l.IsReservedKeyword(symbol) {
 		return true
 	}
