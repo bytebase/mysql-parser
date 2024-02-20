@@ -1103,6 +1103,7 @@ ATTRIBUTE_SYMBOL:       A T T R I B U T E                           ;
 JSON_VALUE_SYMBOL:      J S O N '_' V A L U E                       ;
 RETURNING_SYMBOL:       R E T U R N I N G                           ;
 INTERSECT_SYMBOL:       I N T E R S E C T                           ;
+DELIMITER_SYMBOL:       D E L I M I T E R                           ; // For MySQL client.
 
 // String and text types.
 

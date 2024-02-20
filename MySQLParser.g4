@@ -4109,6 +4109,7 @@ identifierKeyword:
       | JSON_VALUE_SYMBOL
       | RETURNING_SYMBOL
       | INTERSECT_SYMBOL
+      | DELIMITER_SYMBOL
     )
 ;
 

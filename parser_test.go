@@ -50,6 +50,9 @@ func TestMySQLDBSQLParser(t *testing.T) {
 			require.NoError(t, err)
 
 			dataString := strings.TrimRight(string(data), " \t\r\n;") + "\n;"
+			// dataString := string(data)
+			// antlr.ConfigureRuntime(antlr.WithParserATNSimulatorDebug(true))
+
 			input := antlr.NewInputStream(dataString)
 
 			lexer := mysqlparser.NewMySQLLexer(input)
@@ -68,6 +71,10 @@ func TestMySQLDBSQLParser(t *testing.T) {
 			p.BuildParseTrees = true
 
 			tree := p.Script()
+
+			// tree := p.FromClause()
+
+			// fmt.Println(stream.GetAllText())
 
 			require.Equal(t, 0, lexerErrors.errors)
 			require.Equal(t, 0, parserErrors.errors)
