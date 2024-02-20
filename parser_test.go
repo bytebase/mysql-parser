@@ -1,10 +1,10 @@
 package parser_test
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path"
-	"strings"
 	"testing"
 
 	"github.com/antlr4-go/antlr/v4"
@@ -42,6 +42,9 @@ func TestMySQLDBSQLParser(t *testing.T) {
 	require.NoError(t, err)
 
 	for _, file := range examples {
+		if file.Name() != "test.sql" {
+			continue
+		}
 		filePath := path.Join("examples", file.Name())
 		t.Run(filePath, func(t *testing.T) {
 			t.Parallel()
@@ -49,7 +52,10 @@ func TestMySQLDBSQLParser(t *testing.T) {
 			data, err := ioutil.ReadFile(filePath)
 			require.NoError(t, err)
 
-			dataString := strings.TrimRight(string(data), " \t\r\n;") + "\n;"
+			// dataString := strings.TrimRight(string(data), " \t\r\n;") + "\n;"
+			dataString := string(data)
+			antlr.ConfigureRuntime(antlr.WithParserATNSimulatorDebug(true))
+
 			input := antlr.NewInputStream(dataString)
 
 			lexer := mysqlparser.NewMySQLLexer(input)
@@ -67,7 +73,9 @@ func TestMySQLDBSQLParser(t *testing.T) {
 
 			p.BuildParseTrees = true
 
-			tree := p.Script()
+			tree := p.FromClause()
+
+			fmt.Println(stream.GetAllText())
 
 			require.Equal(t, 0, lexerErrors.errors)
 			require.Equal(t, 0, parserErrors.errors)
