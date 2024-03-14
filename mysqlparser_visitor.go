@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -1178,6 +1178,12 @@ type MySQLParserVisitor interface {
 
 	// Visit a parse tree produced by MySQLParser#simpleExprLiteral.
 	VisitSimpleExprLiteral(ctx *SimpleExprLiteralContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#function_call_nonkeyword.
+	VisitFunction_call_nonkeyword(ctx *Function_call_nonkeywordContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#functionCallNonKeyword.
+	VisitFunctionCallNonKeyword(ctx *FunctionCallNonKeywordContext) interface{}
 
 	// Visit a parse tree produced by MySQLParser#arrayCast.
 	VisitArrayCast(ctx *ArrayCastContext) interface{}
