@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -1155,6 +1155,12 @@ type MySQLParserListener interface {
 
 	// EnterSimpleExprLiteral is called when entering the simpleExprLiteral production.
 	EnterSimpleExprLiteral(c *SimpleExprLiteralContext)
+
+	// EnterFunction_call_nonkeyword is called when entering the function_call_nonkeyword production.
+	EnterFunction_call_nonkeyword(c *Function_call_nonkeywordContext)
+
+	// EnterFunctionCallNonKeyword is called when entering the functionCallNonKeyword production.
+	EnterFunctionCallNonKeyword(c *FunctionCallNonKeywordContext)
 
 	// EnterArrayCast is called when entering the arrayCast production.
 	EnterArrayCast(c *ArrayCastContext)
@@ -3117,6 +3123,12 @@ type MySQLParserListener interface {
 
 	// ExitSimpleExprLiteral is called when exiting the simpleExprLiteral production.
 	ExitSimpleExprLiteral(c *SimpleExprLiteralContext)
+
+	// ExitFunction_call_nonkeyword is called when exiting the function_call_nonkeyword production.
+	ExitFunction_call_nonkeyword(c *Function_call_nonkeywordContext)
+
+	// ExitFunctionCallNonKeyword is called when exiting the functionCallNonKeyword production.
+	ExitFunctionCallNonKeyword(c *FunctionCallNonKeywordContext)
 
 	// ExitArrayCast is called when exiting the arrayCast production.
 	ExitArrayCast(c *ArrayCastContext)
