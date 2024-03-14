@@ -2460,14 +2460,13 @@ simpleExpr:
     variable (equal expr)?                                                                               # simpleExprVariable
     | columnRef jsonOperator?                                                                            # simpleExprColumnRef
     | runtimeFunctionCall                                                                                # simpleExprRuntimeFunction
-    | functionCallNonKeyword                                                                             # function_call_nonkeyword
     | functionCall                                                                                       # simpleExprFunction
     | simpleExpr COLLATE_SYMBOL textOrIdentifier                                                         # simpleExprCollate
     | literal                                                                                            # simpleExprLiteral
     | PARAM_MARKER                                                                                       # simpleExprParamMarker
     | sumExpr                                                                                            # simpleExprSum
-    | groupingOperation                                                                                  # simpleExprGroupingOperation
-    | windowFunctionCall                                                                                 # simpleExprWindowingFunction
+    | groupingOperation                                                        # simpleExprGroupingOperation
+    | windowFunctionCall                                                       # simpleExprWindowingFunction
     | simpleExpr CONCAT_PIPES_SYMBOL simpleExpr                                                          # simpleExprConcat
     | op = (PLUS_OPERATOR | MINUS_OPERATOR | BITWISE_NOT_OPERATOR) simpleExpr                            # simpleExprUnary
     | not2Rule simpleExpr                                                                                # simpleExprNot
@@ -2485,26 +2484,6 @@ simpleExpr:
     | INTERVAL_SYMBOL expr interval PLUS_OPERATOR expr                                                   # simpleExprInterval
     | searchJsonFunction                                                                                 # simpleExprSearchJson
 ;
-
-/* 
-    Added By Bytebase.
-    Function calls using non reserved keyworkds, with special syntaxic forms.
-    Dedicated grammar rules are needed because of the syntax,
-    but also have the potential to cause incompatibilities with other
-    parts of the language.
-    MAINTAINER:
-    The only reasons a function should be added here are:
-    - for compatibility reasons with another SQL syntax (CURDATE),
-    - for typing reasons (GET_FORMAT)
-    Any other 'Syntaxic sugar' enhancements should be *STRONGLY*
-    discouraged.
- */
-functionCallNonKeyword:
-    TIMESTAMP_ADD_SYMBOL OPEN_PAR_SYMBOL intervalTimeStamp COMMA_SYMBOL expr COMMA_SYMBOL expr CLOSE_PAR_SYMBOL
-    | TIMESTAMP_DIFF_SYMBOL OPEN_PAR_SYMBOL intervalTimeStamp COMMA_SYMBOL intervalTimeStamp CLOSE_PAR_SYMBOL
-    ;
-
-
 
 arrayCast:
     ARRAY_SYMBOL

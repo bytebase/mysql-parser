@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -2363,20 +2363,6 @@ func (s *BaseMySQLParserListener) EnterSimpleExprLiteral(ctx *SimpleExprLiteralC
 
 // ExitSimpleExprLiteral is called when production simpleExprLiteral is exited.
 func (s *BaseMySQLParserListener) ExitSimpleExprLiteral(ctx *SimpleExprLiteralContext) {}
-
-// EnterFunction_call_nonkeyword is called when production function_call_nonkeyword is entered.
-func (s *BaseMySQLParserListener) EnterFunction_call_nonkeyword(ctx *Function_call_nonkeywordContext) {
-}
-
-// ExitFunction_call_nonkeyword is called when production function_call_nonkeyword is exited.
-func (s *BaseMySQLParserListener) ExitFunction_call_nonkeyword(ctx *Function_call_nonkeywordContext) {
-}
-
-// EnterFunctionCallNonKeyword is called when production functionCallNonKeyword is entered.
-func (s *BaseMySQLParserListener) EnterFunctionCallNonKeyword(ctx *FunctionCallNonKeywordContext) {}
-
-// ExitFunctionCallNonKeyword is called when production functionCallNonKeyword is exited.
-func (s *BaseMySQLParserListener) ExitFunctionCallNonKeyword(ctx *FunctionCallNonKeywordContext) {}
 
 // EnterArrayCast is called when production arrayCast is entered.
 func (s *BaseMySQLParserListener) EnterArrayCast(ctx *ArrayCastContext) {}

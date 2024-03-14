@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.0. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -1536,14 +1536,6 @@ func (v *BaseMySQLParserVisitor) VisitSimpleExprConcat(ctx *SimpleExprConcatCont
 }
 
 func (v *BaseMySQLParserVisitor) VisitSimpleExprLiteral(ctx *SimpleExprLiteralContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseMySQLParserVisitor) VisitFunction_call_nonkeyword(ctx *Function_call_nonkeywordContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseMySQLParserVisitor) VisitFunctionCallNonKeyword(ctx *FunctionCallNonKeywordContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
