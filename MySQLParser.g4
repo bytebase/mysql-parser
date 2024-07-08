@@ -3234,7 +3234,9 @@ indexOption:
 
 // These options are common for all index types.
 commonIndexOption:
-    KEY_BLOCK_SIZE_SYMBOL EQUAL_OPERATOR? ulong_number
+    GLOBAL_SYMBOL
+    | LOCAL_SYMBOL
+    | KEY_BLOCK_SIZE_SYMBOL EQUAL_OPERATOR? ulong_number
     | COMMENT_SYMBOL textLiteral
     | visibility
 ;
