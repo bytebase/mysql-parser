@@ -181,8 +181,8 @@ fragment DIGITS:   DIGIT+;
 fragment HEXDIGIT: [0-9a-fA-F];
 
 // Only lower case 'x' and 'b' count for hex + bin numbers. Otherwise it's an identifier.
-HEX_NUMBER: ('0x' HEXDIGIT+) | ('x\'' HEXDIGIT+ '\'');
-BIN_NUMBER: ('0b' [01]+) | ('b\'' [01]+ '\'');
+HEX_NUMBER: ('0x' HEXDIGIT+) | ('x\'' HEXDIGIT+ '\'')| ('X\'' HEXDIGIT+ '\'');
+BIN_NUMBER: ('0b' [01]+) | ('b\'' [01]+ '\'')| ('B\'' [01]+ '\'');
 
 INT_NUMBER: DIGITS { l.SetType(l.DetermineNumericType(l.GetText())); };
 

@@ -55,4 +55,8 @@ INSERT INTO tbl (tbl.a) SELECT * FROM another_table;
 #begin
 INSERT INTO t1 (a,b,c) VALUES (1,2,3),(4,5,6) AS new ON DUPLICATE KEY UPDATE c = new.a+new.b; 
 #end
+
+#begin
+INSERT INTO tbl (id, name, gender, height) VALUES(1, 'Alice', B'0', B'01111111');
+#end
 ;
