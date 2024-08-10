@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -126,6 +126,12 @@ type MySQLParserListener interface {
 
 	// EnterViewCheckOption is called when entering the viewCheckOption production.
 	EnterViewCheckOption(c *ViewCheckOptionContext)
+
+	// EnterAlterProcedure is called when entering the alterProcedure production.
+	EnterAlterProcedure(c *AlterProcedureContext)
+
+	// EnterAlterFunction is called when entering the alterFunction production.
+	EnterAlterFunction(c *AlterFunctionContext)
 
 	// EnterCreateStatement is called when entering the createStatement production.
 	EnterCreateStatement(c *CreateStatementContext)
@@ -2088,6 +2094,12 @@ type MySQLParserListener interface {
 
 	// ExitViewCheckOption is called when exiting the viewCheckOption production.
 	ExitViewCheckOption(c *ViewCheckOptionContext)
+
+	// ExitAlterProcedure is called when exiting the alterProcedure production.
+	ExitAlterProcedure(c *AlterProcedureContext)
+
+	// ExitAlterFunction is called when exiting the alterFunction production.
+	ExitAlterFunction(c *AlterFunctionContext)
 
 	// ExitCreateStatement is called when exiting the createStatement production.
 	ExitCreateStatement(c *CreateStatementContext)

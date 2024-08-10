@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -149,6 +149,12 @@ type MySQLParserVisitor interface {
 
 	// Visit a parse tree produced by MySQLParser#viewCheckOption.
 	VisitViewCheckOption(ctx *ViewCheckOptionContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#alterProcedure.
+	VisitAlterProcedure(ctx *AlterProcedureContext) interface{}
+
+	// Visit a parse tree produced by MySQLParser#alterFunction.
+	VisitAlterFunction(ctx *AlterFunctionContext) interface{}
 
 	// Visit a parse tree produced by MySQLParser#createStatement.
 	VisitCreateStatement(ctx *CreateStatementContext) interface{}

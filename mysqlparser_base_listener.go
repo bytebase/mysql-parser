@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -263,6 +263,18 @@ func (s *BaseMySQLParserListener) EnterViewCheckOption(ctx *ViewCheckOptionConte
 
 // ExitViewCheckOption is called when production viewCheckOption is exited.
 func (s *BaseMySQLParserListener) ExitViewCheckOption(ctx *ViewCheckOptionContext) {}
+
+// EnterAlterProcedure is called when production alterProcedure is entered.
+func (s *BaseMySQLParserListener) EnterAlterProcedure(ctx *AlterProcedureContext) {}
+
+// ExitAlterProcedure is called when production alterProcedure is exited.
+func (s *BaseMySQLParserListener) ExitAlterProcedure(ctx *AlterProcedureContext) {}
+
+// EnterAlterFunction is called when production alterFunction is entered.
+func (s *BaseMySQLParserListener) EnterAlterFunction(ctx *AlterFunctionContext) {}
+
+// ExitAlterFunction is called when production alterFunction is exited.
+func (s *BaseMySQLParserListener) ExitAlterFunction(ctx *AlterFunctionContext) {}
 
 // EnterCreateStatement is called when production createStatement is entered.
 func (s *BaseMySQLParserListener) EnterCreateStatement(ctx *CreateStatementContext) {}
