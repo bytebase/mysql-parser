@@ -138,8 +138,8 @@ alterStatement:
     ALTER_SYMBOL (
         alterTable
         | alterDatabase
-        | PROCEDURE_SYMBOL procedureRef routineAlterOptions?
-        | FUNCTION_SYMBOL functionRef routineAlterOptions?
+        | alterProcedure
+        | alterFunction
         | alterView
         | alterEvent
         | alterTablespace
@@ -409,6 +409,14 @@ viewSelect:
 
 viewCheckOption:
     WITH_SYMBOL (CASCADED_SYMBOL | LOCAL_SYMBOL)? CHECK_SYMBOL OPTION_SYMBOL
+;
+
+alterProcedure:
+    PROCEDURE_SYMBOL procedureRef routineAlterOptions?
+;
+
+alterFunction:
+    FUNCTION_SYMBOL functionRef routineAlterOptions?
 ;
 
 //----------------------------------------------------------------------------------------------------------------------

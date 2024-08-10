@@ -1,4 +1,4 @@
-// Code generated from MySQLParser.g4 by ANTLR 4.13.1. DO NOT EDIT.
+// Code generated from MySQLParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
 package parser // MySQLParser
 import "github.com/antlr4-go/antlr/v4"
@@ -164,6 +164,14 @@ func (v *BaseMySQLParserVisitor) VisitViewSelect(ctx *ViewSelectContext) interfa
 }
 
 func (v *BaseMySQLParserVisitor) VisitViewCheckOption(ctx *ViewCheckOptionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitAlterProcedure(ctx *AlterProcedureContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseMySQLParserVisitor) VisitAlterFunction(ctx *AlterFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
